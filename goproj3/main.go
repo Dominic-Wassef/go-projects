@@ -170,3 +170,15 @@ func updateSlice(s []string) {
 // The 'mySlice' is not pointing at the underlying array
 // When referring to mySlice it is actually returning the slice data structure
 // not the array
+
+// Many other data structure tha behave like slices
+// Reference Types (Dont worry about pointers with these):
+// Slices, Maps, Channels, Pointers, Functions
+
+// Value Types (You will need pointers with these):
+// Int, Float, String, Bool, Structs
+
+// The slice data structure is what we call a reference type because
+// it is a reference to another data structure in memory,
+// So its okay to make a copy of this reference in memory becasue
+// it will always be pointing back to the same underlying true source of data
