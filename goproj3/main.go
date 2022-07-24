@@ -128,3 +128,45 @@ func GOTCHAS() {
 func updateSlice(s []string) {
 	s[0] = "Bye"
 }
+
+// Exp.
+// Here we created a brand new slice and passed it off to the updatedSlice function
+// Then we updated the slice and printed out the originial one
+// When we printed out this originial slice, we saw that the first element
+// Was changed with the updatedSlice function
+
+// This is completely opposite from what we've been seeing with a struct
+// Remember, with the struct, when we pass it off to the function,
+// go made a copy (interally) of the entire struct
+// So when we modified it in the function, we were modifiying the copy, not the orignial struct
+
+// Difference between slices and arrays:
+
+// Arrays:
+// Primitive data structure
+// Can't be rezied
+// Rarely used directly
+
+// Slices:
+// Can grow and shrink
+// Used 99% of the time for lists of elements
+
+// When creating a slice, go internally is creating two seperate data structures
+// when making 'mySlice' go made the slice and array data structures:
+
+// Slice data structure:
+// 'pointer to head'
+// capacity
+// length
+
+// Array data structure:
+// It holds that value within the slice: []string{"Hi", "There"}
+
+// When creating a slice in go, go will automatically create the slice data struct
+// in one address in memory
+
+// Then that data structure is going to have a pointer to the underlaying array in which
+// will be existing at a different memory address
+// The 'mySlice' is not pointing at the underlying array
+// When referring to mySlice it is actually returning the slice data structure
+// not the array
