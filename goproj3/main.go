@@ -19,7 +19,6 @@ type contactInfo struct {
 
 // func main() {
 // Here is are delcaring (var) alex of type person:
-
 // 	var alex person
 
 // This is grabbing the value of alex which is of type person and
