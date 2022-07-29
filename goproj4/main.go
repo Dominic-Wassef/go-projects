@@ -38,7 +38,11 @@ func printMap(c map[string]string) {
 // Some differences between structs and maps
 
 // Map: All keys AND values must be the same type
+// Key are indexed meaning that we can iteriate over them
 // Referenced Type! (HINT: Pointers won't have to be used here)
+// With a map, you can change any value or delete it because not all keys at compile
 
-// Struct: Values can be of any type and keys don't support indexing
+// Struct: Values can be of any type
+// Keys don't support indexing meaning we can't iteriate over them
 // Value Type! (HINT: Pointers will have to be used here)
+// With a struct, you must know all keys and defined them at compile time
