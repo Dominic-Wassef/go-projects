@@ -6,7 +6,10 @@ import "fmt"
 // If you are a type in this program with a function call 'getGreeting()' and you
 // return a string then you are now an honorary member of type 'bot'
 // Now that you're also an honorary member of type 'bot', you can now call this
-// function called 'printGreeting()'
+// function called 'printGreeting()'.
+
+// Because of this, go is able to link the bot interface and the
+// englishBot / spanishBot structs, again because it matches the coniditions
 type bot interface {
 	getGreeting() string
 }
@@ -48,3 +51,13 @@ func (sb spanishBot) getGreeting() string {
 // type bot interface {
 // 	getGreeting(string, int) (string, error)
 // }
+
+// There two groups of different types!
+// Concrete types: map, struct, int, string and custom types such as 'englishBot'
+// Interface types: bot
+
+// Interfaces are 'implicit' meaning we don't have to
+// manually say that our custom type satisfies some interface
+
+// Interfaces are a contact to help us manage types: GARBAGE IN -> GARBAGE OUT
+// If our custom types implementation of a function is broken, interfaces wont help
