@@ -37,3 +37,6 @@ func main() {
 // 	Reader
 // 	Closer
 // }
+
+// The io.Reader interface:
+//
