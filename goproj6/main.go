@@ -39,7 +39,7 @@ func main() {
 	// the Writer interface, and use that to log out all the data that we're recieving
 	// from the reader
 
-	// func Copy: 
+	// func Copy:
 	// func Copy(dst Writer, src Reader) (written int64, err error)
 	// The first arugment is some value that implements the writer interface
 	// The second arugment is something that implements the reader interface
