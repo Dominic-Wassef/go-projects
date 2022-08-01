@@ -38,6 +38,15 @@ func main() {
 	// To make it work we need to find something in the standard library that implements
 	// the Writer interface, and use that to log out all the data that we're recieving
 	// from the reader
+
+	// func Copy: 
+	// func Copy(dst Writer, src Reader) (written int64, err error)
+	// The first arugment is some value that implements the writer interface
+	// The second arugment is something that implements the reader interface
+
+	// os.Stdout implements the writer interface which is a value that is export by os
+	// The Stdout is of type file, file is a type inside of go that implements the write interface
+
 	io.Copy(os.Stdout, resp.Body)
 }
 
