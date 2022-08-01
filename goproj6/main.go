@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"io"
 	"net/http"
 	"os"
 )
@@ -16,7 +17,28 @@ func main() {
 		// Conventionally, code zero indicates success, non-zero an error.
 		os.Exit(1)
 	}
-	fmt.Println(resp)
+	// The 'make' function is a built in function in the language that takes a type of a slice
+	// And as a second arugement, '99999' this is the number of elements or empty spaces
+	// we want the slice to be initalized with.
+
+	// The reason we gave such a large int arugement
+	// to the read function is because it's not set up to resize
+	// the slice if the slice if already full, so we give it a
+	// large number to avoid that byte slice being too small
+	// bs := make([]byte, 99999)
+	// resp.Body.Read(bs)
+	// fmt.Println(string(bs))
+
+	// There is a way to condense the above code
+	// without using a byte using the writer interface
+	// Difference between Reader and Writer:
+	// Reader:
+	// Source of data -> Reader -> []byte
+	// []byte -> writer -> Some form of output (Ex: Outgoing HTTP Request, Terminal, etc)
+	// To make it work we need to find something in the standard library that implements
+	// the Writer interface, and use that to log out all the data that we're recieving
+	// from the reader
+	io.Copy(os.Stdout, resp.Body)
 }
 
 // Some info around the response struct in 'func (c *Client) Head(url string) (resp *Response, err error)'
@@ -39,4 +61,9 @@ func main() {
 // }
 
 // The io.Reader interface:
-//
+// Rather than having all of these seperate types, which would mean we would have
+// to write different functions to read from all the different sources of data
+// EX:
+// Source of input:
+// HTTP Request Body -> Reader -> []byte (Output data that anyone can work with)
+// Text file on a hard drive -> Reader -> []byte
