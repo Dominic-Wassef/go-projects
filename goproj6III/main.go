@@ -3,40 +3,37 @@ package main
 import "fmt"
 
 type shape interface {
-	getArea() float64
+	getShape() float64
+}
+type triangle struct {
+	base   float64
+	height float64
 }
 
-type squaure struct {
+type square struct {
 	sideLength float64
 }
 
-type triangle struct {
-	height float64
-	base   float64
+func (t triangle) getShape() float64 {
+	return 0.5 * t.base * t.height
 }
 
-func (s squaure) getArea() float64 {
-	tot := s.sideLength * s.sideLength
-	return tot
+func (s square) getShape() float64 {
+	return s.sideLength * s.sideLength
 }
 
-func (t triangle) getArea() float64 {
-	total := (0.5 * t.base * t.height)
-	return total
-}
-
-func printArea(t triangle, s squaure) {
-	fmt.Println("Square:", s.getArea())
-	fmt.Println("Triangle:", t.getArea())
+func printShape(s shape) {
+	fmt.Println(s.getShape())
 }
 
 func main() {
-	tin := triangle{
-		height: 24.393,
-		base:   49.293,
+	tri := triangle{
+		base:   43,
+		height: 32,
 	}
-	sin := squaure{
-		sideLength: 32.394,
+	squ := square{
+		sideLength: 11,
 	}
-	printArea(tin, sin)
+	printShape(tri)
+	printShape(squ)
 }
