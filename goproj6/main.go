@@ -7,6 +7,8 @@ import (
 	"os"
 )
 
+type logWriter struct{}
+
 func main() {
 	// When making a request to a url endpoint, you have to make the 'http://URL_NAME
 	resp, err := http.Get("http://google.com")
@@ -46,8 +48,13 @@ func main() {
 
 	// os.Stdout implements the writer interface which is a value that is export by os
 	// The Stdout is of type file, file is a type inside of go that implements the write interface
+	// io.Copy(os.Stdout, resp.Body)
 
-	io.Copy(os.Stdout, resp.Body)
+	// Other option
+	// Rather than passing off os.Stdout, we are going to passed a value of
+	// logWriter
+	lw := logWriter{}
+	io.Copy(lw, resp.Body)
 }
 
 // Some info around the response struct in 'func (c *Client) Head(url string) (resp *Response, err error)'
@@ -76,3 +83,35 @@ func main() {
 // Source of input:
 // HTTP Request Body -> Reader -> []byte (Output data that anyone can work with)
 // Text file on a hard drive -> Reader -> []byte
+
+// Here we will using a custom writer that implements the Write() func
+// The logWriter struct is being passed into this function as a reciever
+// By defining this function and asssosting it with logWriter, the logWriter
+// is now implemeting the Write interface because logWriter has a function
+// called Write that recieves a byte slice as an arugement and returns
+// an int and a error
+
+// We are going to put together an implementation inside of Write that
+// takes data insde the byte slice and prints it out to the command line
+func (logWriter) Write(bs []byte) (int, error) {
+	fmt.Println(string(bs))
+	fmt.Println("Just wrote this many bytes", len(bs))
+	return len(bs), nil
+}
+
+// THIS IS A SUPER IMPORTANT NOTE:
+// io.Copy is a function within the io package that is described as:
+// func Copy(dst Writer, src Reader) (written int64, err error)
+// The above function is a custom implementation of the Write() func
+// We are above to implement this function anywhere because logWriter
+// is directly assosiated with the Write function, making use able to use:
+
+// 1. Define the type struct
+// type logWriter struct{}
+// 2. Use that type struct as a reciever within the Write func
+// func (logWriter) Write(bs []byte) (int, error) {
+//	return 1, nil
+// }
+// 3. Use it as in place of the io.Copy function
+// lw := logWriter{}
+// io.Copy(lw, resp.Body)
