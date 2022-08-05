@@ -3,37 +3,38 @@ package main
 import "fmt"
 
 type shape interface {
-	getShape() float64
+	getArea() float64
 }
-type triangle struct {
+
+type rectangle struct {
 	base   float64
 	height float64
 }
 
-type square struct {
+type triangle struct {
 	sideLength float64
 }
 
-func (t triangle) getShape() float64 {
-	return 0.5 * t.base * t.height
+func (r rectangle) getArea() float64 {
+	return 0.5 * r.base * r.height
 }
 
-func (s square) getShape() float64 {
-	return s.sideLength * s.sideLength
+func (t triangle) getArea() float64 {
+	return t.sideLength * t.sideLength
 }
 
-func printShape(s shape) {
-	fmt.Println(s.getShape())
+func printArea(s shape) {
+	fmt.Println(s.getArea())
 }
 
 func main() {
-	tri := triangle{
-		base:   43,
+	re := rectangle{
+		base:   23,
 		height: 32,
 	}
-	squ := square{
-		sideLength: 11,
+	tri := triangle{
+		sideLength: 21,
 	}
-	printShape(tri)
-	printShape(squ)
+	printArea(re)
+	printArea(tri)
 }
