@@ -1,19 +1,3 @@
-// package main
-
-// import (
-// 	"fmt"
-// 	"os"
-// )
-
-// func main() {
-// 	content, err := os.ReadFile("fun.txt")
-// 	if err != nil {
-// 		fmt.Println("ERROR:", err)
-//		os.Exit(1)
-// 	}
-// 	fmt.Println(string(content))
-// }
-
 package main
 
 import (
