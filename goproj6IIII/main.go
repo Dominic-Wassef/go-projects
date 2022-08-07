@@ -7,10 +7,10 @@ import (
 )
 
 func main() {
-	lin, err := os.Open(os.Args[1])
+	resp, err := os.Open(os.Args[1])
 	if err != nil {
-		fmt.Println(err)
+		fmt.Println("Error:", err)
 		os.Exit(1)
 	}
-	io.Copy(os.Stdout, lin)
+	io.Copy(os.Stdout, resp)
 }
