@@ -27,6 +27,14 @@ func TestNewDeck(t *testing.T) {
 	}
 }
 
+func TestADeck(t *testing.T) {
+	d := newDeck()
+	if len(d) != 16 {
+		t.Errorf("Expected to recieve 16 characters but got %v", d[0])
+	}
+	if d(len)
+}
+
 func TestSaveToDeckAndNewDeckFromFile(t *testing.T) {
 	// For the test, we will delete	any files in current directory with the
 	// name "_decktesting", then we will create a deck 'newDeck()'
